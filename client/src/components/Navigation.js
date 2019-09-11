@@ -6,7 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
 import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
   fullList: {
     width: "auto"
+  },
+  link: {
+    textDecoration: "none"
   }
 }));
 
@@ -52,12 +55,12 @@ const Navigation = ({ openNav, toggleDrawer }) => {
       <List>
         {menuConfig.map((item, i) => {
           return (
-            <Link to={item.url} className={classes.link} key={i}>
+            <NavLink to={item.url} className={classes.link} key={i}>
               <ListItem button key={i}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItem>
-            </Link>
+            </NavLink>
           );
         })}
       </List>
