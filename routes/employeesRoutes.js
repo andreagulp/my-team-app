@@ -12,4 +12,19 @@ module.exports = app => {
     employee.save();
     res.send("post request done");
   });
+
+  app.get("/api/employees", (req, res, next) => {
+    Employee.find({ _user: req.user.id })
+      .populate("_user")
+      .exec()
+      .then(docs => {
+        res.status(200).json(docs);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
 };

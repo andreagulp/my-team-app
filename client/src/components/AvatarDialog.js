@@ -1,10 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -14,7 +11,6 @@ import Avatar2 from "../assets/avatar2.png";
 import Avatar3 from "../assets/avatar3.png";
 import Avatar4 from "../assets/avatar4.png";
 import Avatar5 from "../assets/avatar5.png";
-import IconButton from "@material-ui/core/IconButton";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
 const useStyles = makeStyles({

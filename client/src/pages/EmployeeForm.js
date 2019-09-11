@@ -8,11 +8,10 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import AvatarDialog from "../components/AvatarDialog";
+
+import { useDispatch } from "react-redux";
+import { addEmployee } from "../actions/employees_action";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -31,12 +30,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   button: {
-    margin: theme.spacing(1)
+    // margin: theme.spacing(1)
   }
 }));
 
-function EmployeeForm() {
+function EmployeeForm({ history }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [newEmployee, setNewEmployee] = useState({
@@ -58,6 +58,11 @@ function EmployeeForm() {
   };
   const handleChangeAvatar = iconSrc => {
     setNewEmployee({ ...newEmployee, iconsUrl: iconSrc });
+  };
+
+  const handleAddEmployee = () => {
+    dispatch(addEmployee(newEmployee));
+    history.push("/employees");
   };
 
   return (
@@ -105,6 +110,28 @@ function EmployeeForm() {
               value={newEmployee.lastName}
               onChange={handleChangeField}
             />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="jobRole"
+              label="Job Role"
+              name="jobRole"
+              autoComplete="organization-title"
+              value={newEmployee.jobRole}
+              onChange={handleChangeField}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Button
+              onClick={handleAddEmployee}
+              variant="outlined"
+              className={classes.button}
+            >
+              ADD EMPLOYEE
+            </Button>
           </Grid>
         </Grid>
       </form>
