@@ -11,6 +11,7 @@ import MyProfile from "./pages/MyProfile";
 import Employees from "./pages/Employees";
 import Teams from "./pages/Teams";
 import EmployeeForm from "./pages/EmployeeForm";
+import EmployeeDetailView from "./pages/EmployeeDetailView";
 
 const styles = theme => ({
   root: {
@@ -33,6 +34,10 @@ const App = ({ classes }) => {
         <Container className={classes.container}>
           <Grid container spacing={3}>
             <Switch>
+              <Route
+                path="/employees/:employeeid"
+                component={EmployeeDetailView}
+              />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />
               <Route path="/new-employee" component={EmployeeForm} />

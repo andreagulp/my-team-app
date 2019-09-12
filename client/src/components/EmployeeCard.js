@@ -11,6 +11,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -24,7 +25,10 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: red[500]
   },
-  buttons: {}
+  buttons: {},
+  link: {
+    textDecoration: "none"
+  }
 }));
 
 function EmployeeCard({ employee }) {
@@ -32,19 +36,21 @@ function EmployeeCard({ employee }) {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
-        <CardHeader
-          avatar={
-            <Avatar
-              className={classes.avatar}
-              alt={employee.name}
-              src={employee.iconsUrl}
-            />
-          }
-          title={`${employee.name} ${employee.lastName}`}
-          subheader={employee.jobRole}
-        />
-      </CardActionArea>
+      <Link to={`/employees/${employee._id}`} className={classes.link}>
+        <CardActionArea>
+          <CardHeader
+            avatar={
+              <Avatar
+                className={classes.avatar}
+                alt={employee.name}
+                src={employee.iconsUrl}
+              />
+            }
+            title={`${employee.name} ${employee.lastName}`}
+            subheader={employee.jobRole}
+          />
+        </CardActionArea>
+      </Link>
       <CardActions disableSpacing className={classes.buttons}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

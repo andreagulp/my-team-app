@@ -27,4 +27,23 @@ module.exports = app => {
         });
       });
   });
+
+  app.get("/api/employees/:employeeId", (req, res, next) => {
+    const id = req.params.employeeId;
+    Employee.findById(id)
+      .populate("_user")
+      .exec()
+      .then(doc => {
+        if (doc) {
+          res.status(200).json(doc);
+        } else {
+          res
+            .status(404)
+            .json({ message: "No valid entry found for provided ID" });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: err });
+      });
+  });
 };
