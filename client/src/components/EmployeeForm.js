@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
@@ -9,9 +9,6 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
 import AvatarDialog from "../components/AvatarDialog";
-
-import { useDispatch } from "react-redux";
-import { addEmployee } from "../actions/employees_action";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -34,50 +31,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EmployeeForm({ history }) {
+function EmployeeForm({
+  open,
+  handleOpen,
+  handleClose,
+  item,
+  handleChangeField,
+  handleChangeAvatar,
+  handleSubmit,
+  mode
+}) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const [open, setOpen] = useState(false);
-  const [newEmployee, setNewEmployee] = useState({
-    name: "",
-    lastName: "",
-    iconsUrl: "",
-    jobRole: ""
-  });
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChangeField = e => {
-    setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
-  };
-  const handleChangeAvatar = iconSrc => {
-    setNewEmployee({ ...newEmployee, iconsUrl: iconSrc });
-  };
-
-  const handleAddEmployee = () => {
-    dispatch(addEmployee(newEmployee));
-    history.push("/employees");
-  };
 
   return (
     <Container component="main" maxWidth="lg">
       <div className={classes.paper}>
         <IconButton className={classes.button} onClick={handleOpen}>
-          {newEmployee.iconsUrl === "" ? (
+          {item.iconsUrl === "" ? (
             <Avatar className={classes.avatar}>
               <AddAPhotoIcon fontSize="large" />
             </Avatar>
           ) : (
             <Avatar
               className={classes.avatar}
-              alt={newEmployee.name}
-              src={newEmployee.iconsUrl}
+              alt={item.name}
+              src={item.iconsUrl}
             />
           )}
         </IconButton>
@@ -94,7 +72,7 @@ function EmployeeForm({ history }) {
               id="name"
               label="First Name"
               autoFocus
-              value={newEmployee.name}
+              value={item.name}
               onChange={handleChangeField}
             />
           </Grid>
@@ -107,7 +85,7 @@ function EmployeeForm({ history }) {
               label="Last Name"
               name="lastName"
               autoComplete="lname"
-              value={newEmployee.lastName}
+              value={item.lastName}
               onChange={handleChangeField}
             />
           </Grid>
@@ -120,13 +98,13 @@ function EmployeeForm({ history }) {
               label="Job Role"
               name="jobRole"
               autoComplete="organization-title"
-              value={newEmployee.jobRole}
+              value={item.jobRole}
               onChange={handleChangeField}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
             <Button
-              onClick={handleAddEmployee}
+              onClick={handleSubmit}
               variant="outlined"
               className={classes.button}
             >

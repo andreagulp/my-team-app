@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import MyProfile from "./pages/MyProfile";
 import Employees from "./pages/Employees";
 import Teams from "./pages/Teams";
-import EmployeeForm from "./pages/EmployeeForm";
+import EmployeeCreate from "./pages/EmployeeCreate";
 import EmployeeDetailView from "./pages/EmployeeDetailView";
 
 const styles = theme => ({
@@ -40,7 +40,7 @@ const App = ({ classes }) => {
               />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />
-              <Route path="/new-employee" component={EmployeeForm} />
+              <Route path="/new-employee" component={EmployeeCreate} />
 
               <Route path="/teams" component={Teams} />
               <Route path="/" component={Home} />

@@ -1,14 +1,7 @@
 import { FETCH_SINGLE_EMPLOYEE } from "../actions/types";
+import { initialEmployee } from "../utils/interfaces";
 
-const initialState = [
-  {
-    name: "",
-    lastName: "",
-    iconsUrl: "",
-    jobRole: "",
-    creationDate: ""
-  }
-];
+const initialState = [initialEmployee];
 
 export default function(state = initialState, action) {
   switch (action.type) {
