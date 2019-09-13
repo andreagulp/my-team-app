@@ -1,4 +1,8 @@
-import { ADD_EMPLOYEE, FETCH_EMPLOYEES } from "../actions/types";
+import {
+  ADD_EMPLOYEE,
+  FETCH_EMPLOYEES,
+  UPDATE_EMPLOYEE
+} from "../actions/types";
 import { initialEmployee } from "../utils/interfaces";
 
 const initialState = [initialEmployee];
@@ -9,6 +13,8 @@ export default function(state = initialState, action) {
       return state;
     case FETCH_EMPLOYEES:
       return action.payload;
+    case UPDATE_EMPLOYEE:
+      return state;
     default:
       return state;
   }

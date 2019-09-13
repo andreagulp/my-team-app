@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { ADD_EMPLOYEE, FETCH_EMPLOYEES, FETCH_SINGLE_EMPLOYEE } from "./types";
+import {
+  ADD_EMPLOYEE,
+  FETCH_EMPLOYEES,
+  FETCH_SINGLE_EMPLOYEE,
+  UPDATE_EMPLOYEE
+} from "./types";
 
 export const addEmployee = employee => async dispatch => {
   const res = await axios.post("/api/new_employee", employee);
@@ -38,5 +43,20 @@ export const fetchSingleEmployee = employeeId => {
   return {
     type: FETCH_SINGLE_EMPLOYEE,
     payload: request
+  };
+};
+
+export const updateEmployee = (employeeId, newEmployee) => {
+  return dispatch => {
+    const request = axios
+      .patch(`/api/employees/update/${employeeId}`, newEmployee)
+      .then(response => {
+        return response;
+      });
+
+    return dispatch({
+      type: UPDATE_EMPLOYEE,
+      payload: request
+    }).then(() => dispatch(fetchEmployees()));
   };
 };

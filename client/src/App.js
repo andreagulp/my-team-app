@@ -11,7 +11,7 @@ import MyProfile from "./pages/MyProfile";
 import Employees from "./pages/Employees";
 import Teams from "./pages/Teams";
 import EmployeeCreate from "./pages/EmployeeCreate";
-import EmployeeDetailView from "./pages/EmployeeDetailView";
+import EmployeeViewUpdate from "./pages/EmployeeViewUpdate";
 
 const styles = theme => ({
   root: {
@@ -36,7 +36,7 @@ const App = ({ classes }) => {
             <Switch>
               <Route
                 path="/employees/:employeeid"
-                component={EmployeeDetailView}
+                component={EmployeeViewUpdate}
               />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />

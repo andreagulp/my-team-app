@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchSingleEmployee } from "../actions/employees_action";
+import {
+  fetchSingleEmployee,
+  updateEmployee
+} from "../actions/employees_action";
 import Loader from "../components/Loader";
 import useForm from "../components/useForm";
 import useDialog from "../components/useDialog";
 import { initialEmployee } from "../utils/interfaces";
 import EmployeeForm from "../components/EmployeeForm";
 
-function EmployeeDetailView(props) {
+function EmployeeViewUpdate(props) {
   const dispatch = useDispatch();
   const employee = useSelector(state => state.singleEmployee);
   const { open, handleOpen, handleClose } = useDialog();
 
   const handleUpdateEmployee = () => {
-    console.log("update employee record in Mongo");
+    dispatch(updateEmployee(item._id, item));
+    props.history.push("/employees");
   };
 
   const { item, handleChangeField, handleChangeAvatar, setItem } = useForm(
@@ -49,4 +53,4 @@ function EmployeeDetailView(props) {
   );
 }
 
-export default EmployeeDetailView;
+export default EmployeeViewUpdate;
