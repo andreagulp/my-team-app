@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   button: {
-    // margin: theme.spacing(1)
+    marginRight: theme.spacing(1),
+    float: "right"
   }
 }));
 
@@ -39,7 +40,8 @@ function EmployeeForm({
   handleChangeField,
   handleChangeAvatar,
   handleSubmit,
-  mode
+  mode,
+  handleDelete
 }) {
   const classes = useStyles();
 
@@ -103,13 +105,32 @@ function EmployeeForm({
             />
           </Grid>
           <Grid item xs={12} sm={12}>
-            <Button
-              onClick={handleSubmit}
-              variant="outlined"
-              className={classes.button}
-            >
-              ADD EMPLOYEE
-            </Button>
+            {mode === "UPDATE" ? (
+              <>
+                <Button
+                  onClick={handleSubmit}
+                  variant="outlined"
+                  className={classes.button}
+                >
+                  {mode}
+                </Button>
+                <Button
+                  onClick={handleDelete}
+                  variant="outlined"
+                  className={classes.button}
+                >
+                  DELETE
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={handleSubmit}
+                variant="outlined"
+                className={classes.button}
+              >
+                {mode}
+              </Button>
+            )}
           </Grid>
         </Grid>
       </form>

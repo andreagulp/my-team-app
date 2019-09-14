@@ -4,7 +4,8 @@ import {
   ADD_EMPLOYEE,
   FETCH_EMPLOYEES,
   FETCH_SINGLE_EMPLOYEE,
-  UPDATE_EMPLOYEE
+  UPDATE_EMPLOYEE,
+  DELETE_EMPLOYEE
 } from "./types";
 
 export const addEmployee = employee => async dispatch => {
@@ -56,6 +57,21 @@ export const updateEmployee = (employeeId, newEmployee) => {
 
     return dispatch({
       type: UPDATE_EMPLOYEE,
+      payload: request
+    }).then(() => dispatch(fetchEmployees()));
+  };
+};
+
+export const deleteEmployee = employeeId => {
+  return dispatch => {
+    const request = axios
+      .delete(`/api/employees/delete/${employeeId}`)
+      .then(response => {
+        return response;
+      });
+
+    return dispatch({
+      type: DELETE_EMPLOYEE,
       payload: request
     }).then(() => dispatch(fetchEmployees()));
   };

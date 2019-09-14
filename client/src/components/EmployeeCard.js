@@ -7,9 +7,8 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 
@@ -55,15 +54,11 @@ function EmployeeCard({ employee }) {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton aria-label="view">
-          <VisibilityIcon />
-        </IconButton>
-        <IconButton aria-label="edit">
-          <EditIcon />
-        </IconButton>
+        <Link to={`/employees/${employee._id}`} className={classes.link}>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </Link>
       </CardActions>
     </Card>
   );

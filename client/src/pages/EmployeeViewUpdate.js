@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   fetchSingleEmployee,
-  updateEmployee
+  updateEmployee,
+  deleteEmployee
 } from "../actions/employees_action";
 import Loader from "../components/Loader";
 import useForm from "../components/useForm";
@@ -18,6 +19,11 @@ function EmployeeViewUpdate(props) {
 
   const handleUpdateEmployee = () => {
     dispatch(updateEmployee(item._id, item));
+    props.history.push("/employees");
+  };
+
+  const handleDeleteEmployee = () => {
+    dispatch(deleteEmployee(item._id));
     props.history.push("/employees");
   };
 
@@ -49,6 +55,7 @@ function EmployeeViewUpdate(props) {
       handleChangeField={handleChangeField}
       handleChangeAvatar={handleChangeAvatar}
       handleSubmit={handleUpdateEmployee}
+      handleDelete={handleDeleteEmployee}
     />
   );
 }

@@ -1,7 +1,8 @@
 import {
   ADD_EMPLOYEE,
   FETCH_EMPLOYEES,
-  UPDATE_EMPLOYEE
+  UPDATE_EMPLOYEE,
+  DELETE_EMPLOYEE
 } from "../actions/types";
 import { initialEmployee } from "../utils/interfaces";
 
@@ -14,6 +15,8 @@ export default function(state = initialState, action) {
     case FETCH_EMPLOYEES:
       return action.payload;
     case UPDATE_EMPLOYEE:
+      return state;
+    case DELETE_EMPLOYEE:
       return state;
     default:
       return state;
