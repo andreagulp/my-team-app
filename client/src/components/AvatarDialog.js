@@ -11,6 +11,10 @@ import Avatar2 from "../assets/avatar2.png";
 import Avatar3 from "../assets/avatar3.png";
 import Avatar4 from "../assets/avatar4.png";
 import Avatar5 from "../assets/avatar5.png";
+import Avatar7 from "../assets/avatar7.png";
+import Avatar8 from "../assets/avatar8.png";
+import Avatar9 from "../assets/avatar9.png";
+import Avatar10 from "../assets/avatar10.png";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
 const useStyles = makeStyles({
@@ -49,6 +53,26 @@ const avatarConfig = [
     id: 5,
     name: "Avatar 5",
     src: Avatar5
+  },
+  {
+    id: 7,
+    name: "Avatar 7",
+    src: Avatar7
+  },
+  {
+    id: 8,
+    name: "Avatar 8",
+    src: Avatar8
+  },
+  {
+    id: 9,
+    name: "Avatar 9",
+    src: Avatar9
+  },
+  {
+    id: 10,
+    name: "Avatar 10",
+    src: Avatar10
   }
 ];
 
