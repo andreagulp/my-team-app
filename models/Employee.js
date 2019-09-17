@@ -8,7 +8,7 @@ const employeeSchema = new Schema({
   iconsUrl: String,
   jobRole: String,
   creationDate: Date,
-  isFavorite: Boolean
+  isFavourite: Boolean
 });
 
 mongoose.model("employee", employeeSchema);

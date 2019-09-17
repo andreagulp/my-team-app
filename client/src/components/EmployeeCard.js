@@ -10,12 +10,16 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateEmployee } from "../actions/employees_action";
 
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
-    minHeight: 180
+    minHeight: 150,
+    position: "relative"
   },
+
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
@@ -23,7 +27,11 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: red[500]
   },
-  buttons: {},
+  actions: {
+    position: "absolute",
+    bottom: 0,
+    left: 0
+  },
   link: {
     textDecoration: "none"
   }
@@ -31,6 +39,12 @@ const useStyles = makeStyles(theme => ({
 
 function EmployeeCard({ employee }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleUpdateIsFavourite = () => {
+    const newItem = { ...employee, isFavourite: !employee.isFavourite };
+    dispatch(updateEmployee(employee._id, newItem));
+  };
 
   return (
     <Card className={classes.card}>
@@ -49,9 +63,12 @@ function EmployeeCard({ employee }) {
           />
         </CardActionArea>
       </Link>
-      <CardActions disableSpacing className={classes.buttons}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+      <CardActions disableSpacing className={classes.actions}>
+        <IconButton
+          aria-label="add to favorites"
+          onClick={handleUpdateIsFavourite}
+        >
+          <FavoriteIcon color={employee.isFavourite ? "secondary" : ""} />
         </IconButton>
         <Link to={`/employees/${employee._id}`} className={classes.link}>
           <IconButton aria-label="edit">

@@ -3,7 +3,7 @@ export const initialEmployee = {
   lastName: "",
   iconsUrl: "",
   jobRole: "",
-  isFavorite: false
+  isFavourite: false
 };
 
 export const initialAppUser = {
