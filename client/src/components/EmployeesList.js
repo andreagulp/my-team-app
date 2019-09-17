@@ -19,13 +19,11 @@ function EmployeesList() {
   return (
     <Container component="main" maxWidth="lg" className={classes.form}>
       <Grid container spacing={3}>
-        {employees.map(employee => {
-          return (
-            <Grid key={employee._id} item xs={12} sm={4}>
-              <EmployeeCard employee={employee} />
-            </Grid>
-          );
-        })}
+        {employees.map(employee => (
+          <Grid item key={employee._id} xs={12} sm={4}>
+            <EmployeeCard employee={employee} />
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

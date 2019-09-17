@@ -7,7 +7,6 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
