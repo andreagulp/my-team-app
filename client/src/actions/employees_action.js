@@ -62,6 +62,21 @@ export const updateEmployee = (employeeId, newEmployee) => {
   };
 };
 
+export const updateEmployeeNotes = (employeeId, newEmployee) => {
+  return dispatch => {
+    const request = axios
+      .patch(`/api/employees/update/${employeeId}`, newEmployee)
+      .then(response => {
+        return response;
+      });
+
+    return dispatch({
+      type: UPDATE_EMPLOYEE,
+      payload: request
+    }).then(() => dispatch(fetchSingleEmployee(employeeId)));
+  };
+};
+
 export const deleteEmployee = employeeId => {
   return dispatch => {
     const request = axios

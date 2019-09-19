@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const employeeNotesSchema = require("./EmployeeNotes");
 
 const employeeSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: "users" },
@@ -8,7 +9,8 @@ const employeeSchema = new Schema({
   iconsUrl: String,
   jobRole: String,
   creationDate: Date,
-  isFavourite: Boolean
+  isFavourite: Boolean,
+  notes: [employeeNotesSchema]
 });
 
 mongoose.model("employee", employeeSchema);

@@ -3,7 +3,15 @@ export const initialEmployee = {
   lastName: "",
   iconsUrl: "",
   jobRole: "",
-  isFavourite: false
+  isFavourite: false,
+  notes: [
+    {
+      _id: "",
+      text: "",
+      creationDate: "",
+      isStarred: false
+    }
+  ]
 };
 
 export const initialAppUser = {
