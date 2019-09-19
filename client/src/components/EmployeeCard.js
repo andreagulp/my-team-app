@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateEmployee } from "../actions/employees_action";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   card: {
     maxWidth: 345,
     minHeight: 150,
