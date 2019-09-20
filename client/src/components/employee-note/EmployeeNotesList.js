@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import EmployeeNotesCard from "./EmployeeNotesCard";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 const useStyles = makeStyles(theme => ({
   form: {

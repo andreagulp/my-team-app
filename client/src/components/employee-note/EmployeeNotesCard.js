@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import { updateEmployeeNotes } from "../actions/employees_action";
-import { useDialog } from "./useDialog";
+import { updateEmployeeNotes } from "../../actions/employees_action";
+import useDialog from "../useDialog";
 import Dialog from "@material-ui/core/Dialog";
 import EmployeeNotesForm from "./EmployeeNotesForm";
 

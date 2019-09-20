@@ -3,12 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
-import useDialog from "../components/useDialog";
+import useDialog from "../useDialog";
 import EmployeeNotesList from "./EmployeeNotesList";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { updateEmployeeNotes } from "../actions/employees_action";
+import { updateEmployeeNotes } from "../../actions/employees_action";
 import EmployeeNotesForm from "./EmployeeNotesForm";
+import useForm from "../useForm";
 
 const useStyles = makeStyles(theme => ({
   root: {

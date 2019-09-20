@@ -23,7 +23,7 @@ import useForm from "../components/useForm";
 import useDialog from "../components/useDialog";
 import { initialEmployee } from "../utils/interfaces";
 import EmployeeForm from "../components/EmployeeForm";
-import EmployeeNotes from "../components/EmployeeNotes";
+import EmployeeNotes from "../components/employee-note/EmployeeNotes";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,7 +75,7 @@ function EmployeeViewUpdate(props) {
     props.history.push("/employees");
   };
 
-  function handleChange(event, newValue) {
+  function handleTabChange(event, newValue) {
     setValue(newValue);
   }
 
@@ -104,7 +104,7 @@ function EmployeeViewUpdate(props) {
           // centered
           // variant="fullWidth"
           value={value}
-          onChange={handleChange}
+          onChange={handleTabChange}
           variant="scrollable"
           scrollButtons="on"
           indicatorColor="primary"
