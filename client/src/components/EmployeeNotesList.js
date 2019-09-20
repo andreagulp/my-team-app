@@ -24,7 +24,7 @@ function EmployeeNotesList({ notes, employee }) {
       <Grid container spacing={3}>
         {notes.map(note => (
           <Grid item key={note._id} xs={12} sm={4}>
-            <EmployeeNotesCard note={note} employee={employee} />
+            <EmployeeNotesCard note={note} employee={employee} notes={notes} />
           </Grid>
         ))}
       </Grid>

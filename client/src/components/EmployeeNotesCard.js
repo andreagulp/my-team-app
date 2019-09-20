@@ -8,6 +8,10 @@ import { useDispatch } from "react-redux";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { updateEmployeeNotes } from "../actions/employees_action";
+import { useDialog } from "./useDialog";
+import Dialog from "@material-ui/core/Dialog";
+import EmployeeNotesForm from "./EmployeeNotesForm";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -30,39 +34,53 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EmployeeNotesCard({ note, employee }) {
+function EmployeeNotesCard({ note, notes, employee }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { open, handleOpen, handleClose } = useDialog();
 
-  // const handleUpdateIsFavourite = () => {
-  //     const newItem = { ...employee, notes: [...employee.notes, isStarred: !note.isStarred] };
-  //     dispatch(updateEmployee(employee._id, newItem));
-  //   };
+  const handleUpdateIsFavourite = id => {
+    const newNotes = notes.map(note =>
+      note._id === id ? { ...note, isStarred: !note.isStarred } : note
+    );
+    const newItem = { ...employee, notes: newNotes };
+    dispatch(updateEmployeeNotes(employee._id, newItem));
+  };
 
   return (
-    <Card className={classes.card}>
-      <CardActions className={classes.actions}>
-        <IconButton
-          aria-label="add to favorites"
-          //   onClick={handleUpdateIsFavourite}
-        >
-          <StarBorderIcon color={note.isStarred ? "secondary" : "default"} />
-        </IconButton>
-        <IconButton aria-label="edit">
-          <EditIcon />
-        </IconButton>
-      </CardActions>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {note.creationDate}
-        </Typography>
-        {note.text}
-      </CardContent>
-    </Card>
+    <>
+      <Card className={classes.card}>
+        <CardActions className={classes.actions}>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={() => handleUpdateIsFavourite(note._id)}
+          >
+            <StarBorderIcon color={note.isStarred ? "secondary" : "default"} />
+          </IconButton>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </CardActions>
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            {note.creationDate}
+          </Typography>
+          {note.text}
+        </CardContent>
+      </Card>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        className={classes.dialog}
+      >
+        <EmployeeNotesForm />
+      </Dialog>
+    </>
   );
 }
 
