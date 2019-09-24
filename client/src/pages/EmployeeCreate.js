@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from "../actions/employees_action";
 import { initialEmployee } from "../utils/interfaces";
 import useDialog from "../components/useDialog";
-import useForm from "../components/useForm";
+import useEmployeeForm from "../components/useEmployeeForm";
 import EmployeeForm from "../components/EmployeeForm";
 
 function EmployeeCreate({ history }) {
@@ -16,7 +16,7 @@ function EmployeeCreate({ history }) {
   };
 
   const { open, handleOpen, handleClose } = useDialog();
-  const { item, handleChangeField, handleChangeAvatar } = useForm(
+  const { item, handleChangeField, handleChangeAvatar } = useEmployeeForm(
     initialEmployee,
     handleAddEmployee
   );

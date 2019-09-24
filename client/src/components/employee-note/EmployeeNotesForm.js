@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 function EmployeeNotesForm({
   handleChangeField,
-  handleAddNote,
+  handleSubmit,
   handleClose,
   note
 }) {
@@ -39,6 +39,7 @@ function EmployeeNotesForm({
       <DialogTitle id="form-dialog-title">Add Note</DialogTitle>
       <DialogContent>
         <TextField
+          name="text"
           autoFocus
           id="outlined-textarea"
           label="Multiline Placeholder"
@@ -56,7 +57,7 @@ function EmployeeNotesForm({
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button color="primary" onClick={handleAddNote}>
+        <Button color="primary" onClick={handleSubmit}>
           Add
         </Button>
       </DialogActions>

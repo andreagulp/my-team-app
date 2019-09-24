@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,6 +12,7 @@ import { updateEmployeeNotes } from "../../actions/employees_action";
 import useDialog from "../useDialog";
 import Dialog from "@material-ui/core/Dialog";
 import EmployeeNotesForm from "./EmployeeNotesForm";
+import useNoteForm from "./useNoteForm";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -35,9 +36,33 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function EmployeeNotesCard({ note, notes, employee }) {
+  console.log("note", note);
+  console.log("notes", notes);
+  console.log("employee", employee);
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const { open, handleOpen, handleClose } = useDialog();
+
+  const handleUpdateNote = id => {
+    const updatedNotes = notes.map(note =>
+      note._id === id ? { ...note, text: noteField } : note
+    );
+    const updatedEmployee = { ...employee, notes: updatedNotes };
+    dispatch(updateEmployeeNotes(employee._id, updatedEmployee));
+  };
+
+  const {
+    handleChangeField,
+    noteField,
+    setNoteField
+    // handleSubmit
+  } = useNoteForm({ text: note.text }, handleUpdateNote);
+
+  useEffect(() => {
+    setNoteField(note.text);
+    return () => setNoteField(null);
+  }, [note, setNoteField]);
 
   const handleUpdateIsFavourite = id => {
     const newNotes = notes.map(note =>
@@ -58,7 +83,7 @@ function EmployeeNotesCard({ note, notes, employee }) {
             <StarBorderIcon color={note.isStarred ? "secondary" : "default"} />
           </IconButton>
           <IconButton aria-label="edit">
-            <EditIcon />
+            <EditIcon onClick={handleOpen} />
           </IconButton>
         </CardActions>
         <CardContent>
@@ -78,7 +103,12 @@ function EmployeeNotesCard({ note, notes, employee }) {
         aria-labelledby="form-dialog-title"
         className={classes.dialog}
       >
-        <EmployeeNotesForm />
+        <EmployeeNotesForm
+          note={noteField}
+          handleClose={handleClose}
+          handleSubmit={handleUpdateNote}
+          handleChangeField={handleChangeField}
+        />
       </Dialog>
     </>
   );

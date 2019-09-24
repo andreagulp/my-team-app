@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useForm(initialState, callback) {
+function useEmployeeForm(initialState, callback) {
   const [item, setItem] = useState(initialState);
 
   const handleChangeField = e => {
@@ -10,7 +10,11 @@ function useForm(initialState, callback) {
     setItem({ ...item, iconsUrl: iconSrc });
   };
 
-  return { item, handleChangeField, handleChangeAvatar, setItem };
+  const handleSubmit = () => {
+    callback();
+  };
+
+  return { item, handleChangeField, handleChangeAvatar, setItem, handleSubmit };
 }
 
-export default useForm;
+export default useEmployeeForm;

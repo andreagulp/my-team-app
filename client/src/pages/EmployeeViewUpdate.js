@@ -19,7 +19,7 @@ import {
   deleteEmployee
 } from "../actions/employees_action";
 import Loader from "../components/Loader";
-import useForm from "../components/useForm";
+import useEmployeeForm from "../components/useEmployeeForm";
 import useDialog from "../components/useDialog";
 import { initialEmployee } from "../utils/interfaces";
 import EmployeeForm from "../components/EmployeeForm";
@@ -79,10 +79,12 @@ function EmployeeViewUpdate(props) {
     setValue(newValue);
   }
 
-  const { item, handleChangeField, handleChangeAvatar, setItem } = useForm(
-    initialEmployee,
-    handleUpdateEmployee
-  );
+  const {
+    item,
+    handleChangeField,
+    handleChangeAvatar,
+    setItem
+  } = useEmployeeForm(initialEmployee, handleUpdateEmployee);
 
   useEffect(() => {
     dispatch(fetchSingleEmployee(props.match.params.employeeid));
