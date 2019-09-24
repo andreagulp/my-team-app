@@ -15,7 +15,6 @@ import EmployeeNotesForm from "./EmployeeNotesForm";
 import useNoteForm from "./useNoteForm";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import Collapse from "@material-ui/core/Collapse";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
@@ -87,7 +86,7 @@ function EmployeeNotesCard({ note, notes, employee }) {
     dispatch(updateEmployeeNotes(employee._id, newItem));
   };
 
-  const handleDelete = () => {
+  const handleDeleteNote = () => {
     const updatedNotes = notes.filter(n => n._id !== note._id);
     const updatedEmployee = { ...employee, notes: updatedNotes };
     dispatch(updateEmployeeNotes(employee._id, updatedEmployee));
@@ -112,7 +111,7 @@ function EmployeeNotesCard({ note, notes, employee }) {
             <EditIcon onClick={handleOpen} />
           </IconButton>
           <IconButton aria-label="edit">
-            <DeleteForeverIcon onClick={handleDelete} />
+            <DeleteForeverIcon onClick={handleDeleteNote} />
           </IconButton>
           <IconButton
             className={clsx(classes.expand, {
