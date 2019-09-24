@@ -33,7 +33,7 @@ function EmployeeNotes() {
 
   const handleAddNote = e => {
     const newNote = {
-      text: note,
+      text: noteField,
       creationDate: Date.now(),
       isStarred: false
     };
@@ -43,12 +43,12 @@ function EmployeeNotes() {
     };
 
     dispatch(updateEmployeeNotes(employee._id, newItem));
-    setNote("");
+    setNoteField("");
     handleClose();
   };
 
   const { open, handleOpen, handleClose } = useDialog();
-  const { handleChangeField, note, setNote } = useNoteForm(
+  const { handleChangeField, noteField, setNoteField } = useNoteForm(
     { text: "" },
     handleAddNote
   );
@@ -75,8 +75,9 @@ function EmployeeNotes() {
         <EmployeeNotesForm
           handleSubmit={handleAddNote}
           handleClose={handleClose}
-          note={note}
+          noteField={noteField}
           handleChangeField={handleChangeField}
+          mode="CREATE"
         />
       </Dialog>
     </div>

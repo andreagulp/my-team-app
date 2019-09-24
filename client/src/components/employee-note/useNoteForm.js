@@ -4,7 +4,7 @@ function useNoteForm(initialState, callback) {
   const [noteField, setNoteField] = useState(initialState);
 
   const handleChangeField = e => {
-    setNoteField({ ...noteField, [e.target.name]: e.target.value });
+    setNoteField(e.target.value);
   };
 
   const handleSubmit = () => {

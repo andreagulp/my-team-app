@@ -30,9 +30,13 @@ function EmployeeNotesForm({
   handleChangeField,
   handleSubmit,
   handleClose,
+  noteText,
+  mode,
   note
 }) {
   const classes = useStyles();
+
+  console.log(noteText, mode);
 
   return (
     <form>
@@ -50,7 +54,7 @@ function EmployeeNotesForm({
           variant="outlined"
           rows="4"
           onChange={handleChangeField}
-          value={note}
+          value={noteText}
         />
       </DialogContent>
       <DialogActions>
@@ -58,7 +62,7 @@ function EmployeeNotesForm({
           Cancel
         </Button>
         <Button color="primary" onClick={handleSubmit}>
-          Add
+          {mode}
         </Button>
       </DialogActions>
     </form>

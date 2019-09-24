@@ -13,6 +13,11 @@ import useDialog from "../useDialog";
 import Dialog from "@material-ui/core/Dialog";
 import EmployeeNotesForm from "./EmployeeNotesForm";
 import useNoteForm from "./useNoteForm";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import Collapse from "@material-ui/core/Collapse";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import clsx from "clsx";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -20,7 +25,16 @@ const useStyles = makeStyles(theme => ({
     minHeight: 150,
     position: "relative"
   },
-
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
+  },
   actions: {
     // position: "absolute",
     // bottom: 0,
@@ -36,20 +50,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function EmployeeNotesCard({ note, notes, employee }) {
-  console.log("note", note);
-  console.log("notes", notes);
-  console.log("employee", employee);
+  // console.log("note", note);
+  // console.log("notes", notes);
+  // console.log("employee", employee);
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const { open, handleOpen, handleClose } = useDialog();
 
-  const handleUpdateNote = id => {
-    const updatedNotes = notes.map(note =>
-      note._id === id ? { ...note, text: noteField } : note
+  const handleUpdateNote = () => {
+    const updatedNotes = notes.map(n =>
+      n._id === note._id ? { ...n, text: noteField } : n
     );
     const updatedEmployee = { ...employee, notes: updatedNotes };
     dispatch(updateEmployeeNotes(employee._id, updatedEmployee));
+    handleClose();
   };
 
   const {
@@ -57,7 +72,7 @@ function EmployeeNotesCard({ note, notes, employee }) {
     noteField,
     setNoteField
     // handleSubmit
-  } = useNoteForm({ text: note.text }, handleUpdateNote);
+  } = useNoteForm(note.text, handleUpdateNote);
 
   useEffect(() => {
     setNoteField(note.text);
@@ -70,6 +85,17 @@ function EmployeeNotesCard({ note, notes, employee }) {
     );
     const newItem = { ...employee, notes: newNotes };
     dispatch(updateEmployeeNotes(employee._id, newItem));
+  };
+
+  const handleDelete = () => {
+    const updatedNotes = notes.filter(n => n._id !== note._id);
+    const updatedEmployee = { ...employee, notes: updatedNotes };
+    dispatch(updateEmployeeNotes(employee._id, updatedEmployee));
+  };
+
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
   return (
@@ -85,6 +111,19 @@ function EmployeeNotesCard({ note, notes, employee }) {
           <IconButton aria-label="edit">
             <EditIcon onClick={handleOpen} />
           </IconButton>
+          <IconButton aria-label="edit">
+            <DeleteForeverIcon onClick={handleDelete} />
+          </IconButton>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <VisibilityIcon />
+          </IconButton>
         </CardActions>
         <CardContent>
           <Typography
@@ -94,8 +133,13 @@ function EmployeeNotesCard({ note, notes, employee }) {
           >
             {note.creationDate}
           </Typography>
-          {note.text}
+          <Typography noWrap>{note.text}</Typography>
         </CardContent>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>{note.text}</Typography>
+          </CardContent>
+        </Collapse>
       </Card>
       <Dialog
         open={open}
@@ -104,7 +148,9 @@ function EmployeeNotesCard({ note, notes, employee }) {
         className={classes.dialog}
       >
         <EmployeeNotesForm
-          note={noteField}
+          mode="UPDATE"
+          note={note}
+          noteText={noteField}
           handleClose={handleClose}
           handleSubmit={handleUpdateNote}
           handleChangeField={handleChangeField}
