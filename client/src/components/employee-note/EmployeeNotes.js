@@ -4,9 +4,8 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
 import useDialog from "../useDialog";
-import EmployeeNotesList from "./EmployeeNotesList";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import EmployeeNotesList from "./EmployeeNotesList";
 import { updateEmployeeNotes } from "../../actions/employees_action";
 import EmployeeNotesForm from "./EmployeeNotesForm";
 import useNoteForm from "./useNoteForm";
@@ -25,10 +24,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EmployeeNotes() {
+function EmployeeNotes({ employee }) {
   const classes = useStyles();
 
-  const employee = useSelector(state => state.singleEmployee);
   const dispatch = useDispatch();
 
   const handleAddNote = e => {

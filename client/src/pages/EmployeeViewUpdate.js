@@ -139,10 +139,10 @@ function EmployeeViewUpdate(props) {
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EmployeeNotes />
+        <EmployeeNotes employee={employee} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <EmployeeTodos />
+        <EmployeeTodos employee={employee} />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four

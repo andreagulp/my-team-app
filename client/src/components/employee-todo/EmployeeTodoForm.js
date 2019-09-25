@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EmployeeTodoForm() {
+function EmployeeTodoForm({ handleChangeField, todoText, handleAddTodo }) {
   const classes = useStyles();
 
   return (
@@ -34,8 +34,8 @@ function EmployeeTodoForm() {
             // className={classes.textField}
             margin="normal"
             variant="outlined"
-            //   onChange={handleChangeField}
-            //   value={noteText}
+            onChange={handleChangeField}
+            value={todoText}
             fullWidth
           />
         </Grid>
@@ -46,7 +46,7 @@ function EmployeeTodoForm() {
             className={classes.fab}
             size="large"
           >
-            <AddIcon />
+            <AddIcon onClick={handleAddTodo} />
           </Fab>
         </Grid>
       </Grid>
