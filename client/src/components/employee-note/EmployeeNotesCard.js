@@ -117,11 +117,10 @@ function EmployeeNotesCard({ note, notes, employee }) {
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
             })}
-            onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <VisibilityIcon />
+            <VisibilityIcon onClick={handleExpandClick} />
           </IconButton>
         </CardActions>
         <CardContent>

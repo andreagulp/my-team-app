@@ -1,8 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Route, Switch } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+// import Container from "@material-ui/core/Container";
+// import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Header from "./components/Header";
@@ -31,22 +31,19 @@ const App = ({ classes }) => {
 
       <Header />
       <main className={classes.content}>
-        <Container className={classes.container}>
-          <Grid container spacing={3}>
-            <Switch>
-              <Route
-                path="/employees/:employeeid"
-                component={EmployeeViewUpdate}
-              />
-              <Route path="/myprofile" component={MyProfile} />
-              <Route path="/employees" component={Employees} />
-              <Route path="/new-employee" component={EmployeeCreate} />
+        {/* <Container className={classes.container}> */}
+        {/* <Grid container spacing={3}> */}
+        <Switch>
+          <Route path="/employees/:employeeid" component={EmployeeViewUpdate} />
+          <Route path="/myprofile" component={MyProfile} />
+          <Route path="/employees" component={Employees} />
+          <Route path="/new-employee" component={EmployeeCreate} />
 
-              <Route path="/teams" component={Teams} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </Grid>
-        </Container>
+          <Route path="/teams" component={Teams} />
+          <Route path="/" component={Home} />
+        </Switch>
+        {/* </Grid> */}
+        {/* </Container> */}
       </main>
     </div>
   );

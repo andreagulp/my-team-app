@@ -56,7 +56,7 @@ const Navigation = ({ openNav, toggleDrawer }) => {
         {menuConfig.map((item, i) => {
           return (
             <NavLink to={item.url} className={classes.link} key={i}>
-              <ListItem button key={i}>
+              <ListItem button>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItem>

@@ -6,10 +6,18 @@ export const initialEmployee = {
   isFavourite: false,
   notes: [
     {
-      _id: "",
+      // _id: "",
       text: "",
       creationDate: "",
       isStarred: false
+    }
+  ],
+  todos: [
+    {
+      // _id: "",
+      text: "",
+      isPriority: "",
+      dueDate: ""
     }
   ]
 };

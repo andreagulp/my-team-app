@@ -68,7 +68,9 @@ function EmployeeCard({ employee }) {
           aria-label="add to favorites"
           onClick={handleUpdateIsFavourite}
         >
-          <FavoriteIcon color={employee.isFavourite ? "secondary" : ""} />
+          <FavoriteIcon
+            color={employee.isFavourite ? "secondary" : "inherit"}
+          />
         </IconButton>
         <Link to={`/employees/${employee._id}`} className={classes.link}>
           <IconButton aria-label="edit">

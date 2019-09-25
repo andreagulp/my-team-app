@@ -17,15 +17,17 @@ function EmployeesList() {
   const employees = useSelector(state => state.employees);
 
   return (
-    <Container component="main" maxWidth="lg" className={classes.form}>
-      <Grid container spacing={3}>
-        {employees.map(employee => (
-          <Grid item key={employee._id} xs={12} sm={4}>
-            <EmployeeCard employee={employee} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Container component="main" maxWidth="lg" className={classes.form}>
+        <Grid container spacing={3}>
+          {employees.map(employee => (
+            <Grid item key={employee._id} xs={12} sm={4}>
+              <EmployeeCard employee={employee} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
   );
 }
 

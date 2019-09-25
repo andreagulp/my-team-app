@@ -24,6 +24,7 @@ import useDialog from "../components/useDialog";
 import { initialEmployee } from "../utils/interfaces";
 import EmployeeForm from "../components/EmployeeForm";
 import EmployeeNotes from "../components/employee-note/EmployeeNotes";
+import EmployeeTodos from "../components/employee-todo/EmployeeTodos";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -141,7 +142,7 @@ function EmployeeViewUpdate(props) {
         <EmployeeNotes />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <EmployeeTodos />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four
